@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 export default class App extends Component {
   aa() {
     const a = {
-      q1: 0
+      q1: 0,
+      q2: 0,
+      q3: 0,
+      q4: 0
     }
     if (a === 8) {
       // cccc
@@ -13,7 +16,7 @@ export default class App extends Component {
     return (
       <div>
         Hello, React world!就这，还是太难了
-        <p>react router（3/4）。想使用4</p>
+        <p style={styles.fontSize}>react router（3/4）。想使用4</p>
         <p>react router（3/4）。想使用4</p>
         <p>react router（3/4）。想使用4</p>
         <p>react redux/mobx</p>
@@ -23,5 +26,12 @@ export default class App extends Component {
         <p>代码格式化</p>
       </div>
     )
+  }
+}
+
+const styles = {
+  fontSize: {
+    color: 'red',
+    'font-size': '14px'
   }
 }
