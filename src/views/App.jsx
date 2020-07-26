@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
 export default class App extends Component {
-  aa () {
-    const a = 0
+  aa() {
+    const a = {
+      q1: 0
+    }
     if (a === 8) {
       // cccc
     }
@@ -11,6 +13,8 @@ export default class App extends Component {
     return (
       <div>
         Hello, React world!就这，还是太难了
+        <p>react router（3/4）。想使用4</p>
+        <p>react router（3/4）。想使用4</p>
         <p>react router（3/4）。想使用4</p>
         <p>react redux/mobx</p>
         <p>http请求</p>
