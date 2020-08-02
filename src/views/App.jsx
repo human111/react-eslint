@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+// import { testData } from './test-data'
+import { testData1 } from './test-data1'
+import { searchObjProp } from './searchObjProp'
+
 export default class App extends Component {
   aa() {
     const a = {
@@ -12,6 +16,13 @@ export default class App extends Component {
       // cccc
     }
   }
+
+  componentDidMount() {
+    const aa = searchObjProp(testData1, 6161, 'category-summary-panel')
+    console.log('========dfdf=====332-4-32-432-432-43-======', aa)
+    // console.log('========dfdf======', testData)
+  }
+
   render() {
     return (
       <div>
