@@ -7,16 +7,24 @@ module.exports = {
     commonjs: true,
     node: true
   },
+  parser: "@typescript-eslint/parser", // 将 TypeScript 转换为 ESTree，使 eslint 可以识别
+  // extend 提供的是 eslint 现有规则的一系列预设
   extends: [
-    'airbnb',
+    // 'airbnb',
     'eslint:recommended',
     'plugin:import/typescript',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
   ],
+  //  plugin 则提供了除预设之外的自定义规则，当你在 eslint 的规则里找不到合适的的时候就可以借用插件来实现了
+  plugins: [
+    'react',
+    '@typescript-eslint' // 只是一个可以打开或关闭的规则列表
+  ],
   settings: {
-    react: {
+    react: { // 自动发现React的版本，从而进行规范react代码
       version: 'detect',
       pragma: 'React'
     },
@@ -27,9 +35,9 @@ module.exports = {
         }
     }
   },
-  parser: "@typescript-eslint/parser",
   parserOptions: {
     parser: 'babel-eslint', // 词法解析器使用babel-eslint，以更好的适配es6的新api
+    // 指定ESLint可以解析JSX语法
     ecmaFeatures: {
         'jsx': true,
         'tsx': true
@@ -39,10 +47,6 @@ module.exports = {
     project: './tsconfig.json',
     useJSXTextNode: true,
   },
-  plugins: [
-    'react',
-    '@typescript-eslint'
-  ],
   // 可以在这里覆盖react的规则
   rules: {
     'react/jsx-uses-react': 'error',

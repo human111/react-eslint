@@ -1,10 +1,10 @@
 // axios请求封装
 import axios, { AxiosRequestConfig } from 'axios'
 
-interface IRequestOptions extends AxiosRequestConfig {
-  passCodes?: (number | string)[] | 'all' // 不拦截处理
-  showLoading?: boolean
-}
+// interface IRequestOptions extends AxiosRequestConfig {
+//   passCodes?: (number | string)[] | 'all' // 不拦截处理
+//   showLoading?: boolean
+// }
 // import { JFAccount, JFNetFetch, JFPrompt, JFNavigation, JFContext } from '@/native'
 
 // const { commonReqInfo } = JFNetFetch

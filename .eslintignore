@@ -5,3 +5,4 @@ config/
 scripts/
 node_modules/
 dist
+src/main.ts

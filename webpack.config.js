@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -7,15 +8,21 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 
+process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'development';
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
+
+const realPath = fs.realpathSync(process.cwd())
+const resolvePath = relativePath => path.resolve(realPath, relativePath)
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    app: './src/app.js'
+    app: './src/main.tsx'
   },
   output: {
     filename: '[name].bundle.js', // 定义输出文件名称
@@ -117,20 +124,20 @@ module.exports = {
             },
           },
           // css loader
-          {
-            test: cssRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-            }),
-          },
-          {
-            test: sassRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
-          },
-          {
-            test: lessRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, 'less-loader'),
-          },
+          // {
+          //   test: cssRegex,
+          //   use: getStyleLoaders({
+          //     importLoaders: 1,
+          //   }),
+          // },
+          // {
+          //   test: sassRegex,
+          //   use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
+          // },
+          // {
+          //   test: lessRegex,
+          //   use: getStyleLoaders({ importLoaders: 2 }, 'less-loader'),
+          // },
           // file-loader
           {
             exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
@@ -140,11 +147,11 @@ module.exports = {
             },
           },
         ]
-      }
-      // {
-      //   test: /\.css$/, // 匹配.css文件
-      //   use: ['style-loader', 'css-loader', 'sass-loader'], // 加载方式从右往左
-      // },
+      },
+      {
+        test: /\.css$/, // 匹配.css文件
+        use: ['style-loader', 'css-loader', 'sass-loader'], // 加载方式从右往左
+      },
       // {
       //   test: /\.(js|jsx)$/, // 匹配.js文件
       //   exclude: /node_modules/,
