@@ -1,7 +1,7 @@
 // import testData from './test-data'
 let result = {}
 
-export const searchObjProp = (obj, targetId, targetComp) => {
+export const searchObjProp = (obj: any, targetId: any, targetComp: any) => {
   console.log(targetId, targetComp)
   if (Array.isArray(obj)) {
     console.log('array entry')
@@ -9,7 +9,7 @@ export const searchObjProp = (obj, targetId, targetComp) => {
     obj.map((item) => searchObjProp(item, targetId, targetComp))
   } else {
     console.log('object entry')
-    for (let key in obj) {
+    for (const key in obj) {
       if (!Array.isArray(obj[key]) && typeof obj[key] !== 'object') {
         console.log('object entry====>>>', obj[key])
         if (obj[key] === targetId) {
@@ -23,7 +23,7 @@ export const searchObjProp = (obj, targetId, targetComp) => {
         console.log('object object entry====>>>')
         if (Array.isArray(obj[key])) {
           console.log('object Array entry====>>>')
-          obj[key].map((item) => searchObjProp(item, targetId, targetComp))
+          obj[key].map((item: any) => searchObjProp(item, targetId, targetComp))
         } else {
           console.log('object Array1111 entry====>>>')
           searchObjProp(obj[key], targetId, targetComp)

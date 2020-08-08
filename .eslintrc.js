@@ -13,7 +13,7 @@ module.exports = {
     // 'airbnb',
     'eslint:recommended',
     'plugin:import/typescript',
-    'plugin:react/recommended',
+    // 'plugin:react/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
