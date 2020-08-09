@@ -41,16 +41,16 @@
 
   ```JSON
   parserOptions: {
-    parser: 'babel-eslint', // 词法解析器使用babel-eslint，以更好的适配es6的新api
+    "parser": "babel-eslint", // 词法解析器使用babel-eslint，以更好的适配es6的新api
     // 指定ESLint可以解析JSX和TSX语法
-    ecmaFeatures: {
-        'jsx': true,
-        'tsx': true
+    "ecmaFeatures": {
+        "jsx": true,
+        "tsx": true
     },
-    ecmaVersion: 6, // 启用 ES6 语法支持;默认设置为3，5（默认）， 你可以使用 6、7、8 或 9 来指定你想要使用的 ECMAScript 版本。
-    sourceType: 'module', // 设置为 "script" (默认) 或 "module"（如果你的代码是 ECMAScript 模块)
-    project: './tsconfig.json',
-    useJSXTextNode: true,
+    "ecmaVersion": 6, // 启用 ES6 语法支持;默认设置为3，5（默认）， 你可以使用 6、7、8 或 9 来指定你想要使用的 ECMAScript 版本。
+    "sourceType": "module", // 设置为 "script" (默认) 或 "module"（如果你的代码是 ECMAScript 模块)
+    "project": "./tsconfig.json",
+    "useJSXTextNode": true,
   }
   ```
 
@@ -64,23 +64,24 @@
 
   ```JSON
   env: {
-    browser: true, // 浏览器环境中的全局变量
-    es6: true, // 启用除了 modules 以外的所有 ECMAScript 6 特性
-    commonjs: true, // CommonJS 全局变量和 CommonJS 作用域 (用于 Browserify/WebPack 打包的只在浏览器中运行的代码)。
-    node: true // Node.js 全局变量和 Node.js 作用域
+    "browser": true, // 浏览器环境中的全局变量
+    "es6": true, // 启用除了 modules 以外的所有 ECMAScript 6 特性
+    "commonjs": true, // CommonJS 全局变量和 CommonJS 作用域 (用于 Browserify/WebPack 打包的只在浏览器中运行的代码)。
+    "node": true // Node.js 全局变量和 Node.js 作用域
   }
   ```
 
-- 全局变量（globals）：当访问当前源文件内未定义的变量时，no-undef 规则将发出警告。如果你想在一个源文件里使用全局变量，推荐你在 ESLint 中定义这些全局变量，这样 ESLint 就不会发出警告了。
+- 全局变量（globals）：当访问当前源文件内未定义的变量时，no-undef 规则将发出警告。当我们使用第三方提供的全局变量的时候（例如：jQuery,Vue 等对象），ESLint 并不能识别他们，总是会报错。这个时候，该配置的作用就出现了。使用 globals 指出你要使用的全局变量。将变量设置为 true 将允许变量被重写（这样 ESLint 就不会发出警告了），或 false 将不允许被重写。
 
   ```JSON
   globals: {
-    Vue: true,
-    Navigation: true,
-    Context: true,
-    Tool: true,
-    gio: true,
-    sensors: true
+    "Vue": true,
+    "Navigation": true,
+    "Context": true,
+    "Tool": true,
+    "gio": true,
+    "jQuery": true,
+    "sensors": true
   }
   ```
 
@@ -89,7 +90,7 @@
   ```JSON
   //  plugin 则提供了除预设之外的自定义规则，当你在 eslint 的规则里找不到合适的的时候就可以借用插件来实现了
   plugins: [
-    'react',
+    "react",
   ]
   ```
 
@@ -101,10 +102,10 @@
   ```JSON
   //  这里你可以自定义修改检测规则
   rules: {
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
-    indent: 'off',
-    camelcase: 'off', // 不强制变量名使用驼峰格式
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "indent": "off",
+    "camelcase": "off", // 不强制变量名使用驼峰格式
     ...
   }
   ```
@@ -114,11 +115,26 @@
   ```JSON
   extends: [
     // 'airbnb',
-    'eslint:recommended',
-    'plugin:import/typescript',
-    // 'plugin:react/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended'
+    "eslint:recommended",
+    "plugin:import/typescript",
+    // "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ]
   ```
+
+## .eslintignore
+
+你可以通过在项目根目录创建一个 .eslintignore 文件告诉 ESLint 去忽略特定的文件和目录。.eslintignore 文件是一个纯文本文件，其中的每一行都是一个 glob 模式表明哪些路径应该忽略检测
+
+  ```text
+    /*.js
+    build
+    config/
+    scripts/
+    node_modules/
+    dist
+  ```
+
+当 ESLint 运行时，在确定哪些文件要检测之前，它会在当前工作目录中查找一个 .eslintignore 文件。如果发现了这个文件，当遍历目录时，将会应用这些偏好设置。一次只有一个 .eslintignore 文件会被使用，所以，不是当前工作目录下的 .eslintignore 文件将不会被用到。
