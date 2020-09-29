@@ -5,7 +5,8 @@ module.exports = {
     browser: true,
     es6: true,
     commonjs: true,
-    node: true
+    node: true,
+    jquery: true
   },
   parser: "@typescript-eslint/parser", // 将 TypeScript 转换为 ESTree，使 eslint 可以识别
   // extend 提供的是 eslint 现有规则的一系列预设

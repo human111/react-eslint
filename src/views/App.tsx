@@ -17,8 +17,8 @@ export default class App extends Component {
       q3: 0,
       q4: 0
     }
-    if (b === 8) {
-      console.log('======>', a)
+    if (b === 8 && global) {
+      console.log('======>', a, window.location, global)
       // cccc
     }
   }
