@@ -1,11 +1,9 @@
-// import * as React from 'react'
 // eslint-disable-next-line no-unused-vars
 import React, { ReactNode, Component } from 'react'
 
-// import { testData } from './test-data'
-// import { testData1 } from './test-data1'
-// import { searchObjProp } from './searchObjProp'
-import './App.css'
+import TodoApp from './test/pure-vs-fc'
+import './App.scss'
+import { Button } from 'antd'
 
 import logo from './logo.svg'
 
@@ -19,14 +17,7 @@ export default class App extends Component {
     }
     if (b === 8) {
       console.log('======>', a)
-      // cccc
     }
-  }
-
-  componentDidMount() {
-    // const aa = searchObjProp(testData1, 6161, 'category-summary-panel')
-    // console.log('========dfdf=====332-4-32-432-432-43-======', aa)
-    // console.log('========dfdf======', testData)
   }
 
   render(): ReactNode {
@@ -36,6 +27,7 @@ export default class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React，ghy</h1>
         </header>
+        <Button type="primary">测试Antd库</Button>
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -50,6 +42,7 @@ export default class App extends Component {
           <p>提交预检测</p>
           <p>代码格式化</p>
         </div>
+        <TodoApp />
       </div>
     )
   }
@@ -58,6 +51,6 @@ export default class App extends Component {
 const styles = {
   fontSize: {
     color: 'red',
-    'font-size': '14px'
+    fontSize: '14px'
   }
 }

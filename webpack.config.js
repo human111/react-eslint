@@ -154,7 +154,7 @@ module.exports = {
       //   ]
       // },
       {
-        test: /\.(css|sass)$/, // 匹配.css文件
+        test: /\.(css|sass|scss)$/, // 匹配.css文件
         use: ['style-loader', 'css-loader', 'sass-loader'], // 加载方式从右往左
       },
       {

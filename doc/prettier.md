@@ -17,7 +17,7 @@
    3. eslint-plugin-prettier: 将作为ESlint 的一部分运行 Prettier分析。
 3. 建立配置文件.eslintrc.js，主要是ts的检测和对应的prettier
 
-   ```JSON
+    ```JSON
     extends: [
       "eslint:recommended",
       "plugin:import/typescript",
@@ -29,6 +29,8 @@
     "rules": {
       "prettier/prettier": "error"
     },
+    ```
+
 4. 配置完了，但要在保存的时候自动格式化，还需要做一些处理。打开VScode的配置文件，增加以下配置：
 
   ```JSON

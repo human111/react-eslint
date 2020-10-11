@@ -13,7 +13,7 @@ module.exports = {
     // 'airbnb',
     'eslint:recommended',
     'plugin:import/typescript',
-    // 'plugin:react/recommended',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
@@ -51,5 +51,12 @@ module.exports = {
   rules: {
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
+    'react/sort-comp': [
+      2,
+      {
+        order: ['static-methods', 'static-variables', 'instance-variables', 'lifecycle', 'everything-else', 'render'],
+      },
+    ],
+    // '@typescript-eslint/no-unused-vars': 'error'
   }
 }
