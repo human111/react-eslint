@@ -35,7 +35,7 @@
 - 直接使用 JavaScript 注释把配置信息直接嵌入到一个代码源文件中。eg: // eslint-disable-line no-alert
 - 使用JavaScript配置文件。eg: .eslintrc.js
 
-### 接下来我们主要讲解配置文件
+### 接下来我们主要讲解配置文件的属性
 
 - 解析器选项（parserOptions）：它允许你指定你想要支持的 JavaScript 语言选项，如：es6
 
@@ -72,8 +72,8 @@
   }
 
   // 如果你使用自己定义的环境变量，可以这样写。注意需要plugins和env配合使用，
-  "plugins": ["example"], // 插件中添加你的插件名
-  "env": {
+  plugins: ["example"], // 插件中添加你的插件名
+  env: {
       "example/custom": true // 环境中添加你的插件名后跟一个/ ，紧随着环境名
   }
   ```
@@ -94,6 +94,8 @@
 
 - 插件（plugins）：在使用插件之前，你必须使用 npm 安装它。在配置文件里配置插件时，可以使用 plugins 关键字来存放插件名字的列表。插件名称可以省略 eslint-plugin- 前缀。
 
+  [npm上的Eslint插件](https://www.npmjs.com/search?q=keywords:eslintplugin)
+
   ```JSON
   //  plugin 则提供了除预设之外的自定义规则，当你在 eslint 的规则里找不到合适的的时候就可以借用插件来实现了
   plugins: [
@@ -105,7 +107,7 @@
   - "off" 或 0 - 关闭规则
   - "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
   - "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
-  - rules属性下面的扩展（或覆盖）规则：
+  - rules（rules中定义个别规则，可覆盖掉”extends”中引入的规则）属性下面的扩展或覆盖规则：
     - 改变继承的规则级别而不改变它的选项：
       - 基础配置："eqeqeq": ["error", "allow-null"]
       - 派生的配置："eqeqeq": "warn"
@@ -248,6 +250,54 @@
     // 链式调用没必要强制换行
     "newline-per-chained-call": "off",
   }
+  ```
+
+## [Pre-commit](https://gist.github.com/dahjelle/8ddedf0aebd488208a9a7c829f19b9e8#file-pre-commit-sh)
+
+  ```sh
+    // pre-commit.sh
+    #!/bin/bash
+
+    for file in $(git diff --cached --name-only | grep -E '\.(js|jsx)$')
+    do
+      git show ":$file" | node_modules/.bin/eslint --stdin --stdin-filename "$file" # we only want to lint the staged changes, not any un-staged changes
+      if [ $? -ne 0 ]; then
+        echo "ESLint failed on staged file '$file'. Please check your code and try again. You can run ESLint manually via npm run eslint."
+        exit 1 # exit with failure status
+      fi
+    done  
+  ```
+
+## MISC(杂记)
+
+- [Eslint demo Exercise](https://cn.eslint.org/demo/)
+- 结合webpack使用时，可以用eslint-loader
+
+  ```js
+  {
+    "test": /\.(js|vue)$/,
+    "loader": "eslint-loader",
+    "enforce": "pre",
+    "include": resolve('src'),
+    "options": {
+      "formatter": require('eslint-friendly-formatter'),
+      "emitWarning": false, // eslint errors and warnings will also be shown in the error overlay
+      "fix": false
+    }
+  }
+  ```
+
+- 比如eslint和prettier产生冲突时
+
+  ```js
+  // .eslintrc.js中rules的配置
+  "quotes": ["error", "single"], // 强制使用单引号
+  "semi": ["error", "never"] // 强制不使用分号结尾
+
+  // .prettierrc.js中的配置
+  "prettier.eslintIntegration": true, // 开启 eslint 支持
+  "prettier.singleQuote": true, // 使用单引号
+  "prettier.semi": false // 结尾不加分号
   ```
 
 ## 待学习的
