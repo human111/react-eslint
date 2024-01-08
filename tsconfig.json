@@ -65,7 +65,7 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
 
     "skipLibCheck": true,
-    "locale": "zh-CN"
+    // "locale": "zh-CN"
   },
   "include": ["src", "images.d.ts"],
   "exclude": ["node_modules", "scripts", "config", "dist", "*.js", "*.json", "doc"],

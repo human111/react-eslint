@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React, { ReactNode, Component } from 'react'
 
-import TodoApp from './test/pure-vs-fc'
+// import TodoApp from './test/pure-vs-fc'
 import './App.scss'
 import { Button } from 'antd'
 
 import logo from './logo.svg'
+import TodoApp from './TodoApp'
 
 export default class App extends Component {
   aa(b: any) {
